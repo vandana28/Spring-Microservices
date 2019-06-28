@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/photo-app-api-users" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/photo-app-api-users" vcs="" />
+    <mapping directory="$PROJECT_DIR$/photo-app-api-users copy" vcs="" />
   </component>
 </project>

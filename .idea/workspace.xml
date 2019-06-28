@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2243a715-2bca-4f5c-84af-a7da8ab60f68" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/photo-app-api-users" beforeDir="false" afterPath="$PROJECT_DIR$/photo-app-api-users" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/photo-app-api-users/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/photo-app-api-users/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/photo-app-api-users/src/main/java/com/vandanasridhar/photoapp/api/users/PhotoAppApiUsersApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/photo-app-api-users/src/main/java/com/vandanasridhar/photoapp/api/users/PhotoAppApiUsersApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/photo-app-api-users/src/main/java/com/vandanasridhar/photoapp/api/users/ui/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/photo-app-api-users/src/main/java/com/vandanasridhar/photoapp/api/users/ui/UsersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/photo-app-api-users/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/photo-app-api-users/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo-app-api-users" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +12,28 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/photo-app-api-users/src/main/resources/application.properties" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/springmicroservices.iml" />
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+      </list>
+    </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="x" value="-1281" />
@@ -30,16 +48,28 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="springmicroservices" type="b2602c69:ProjectViewProjectNode" />
+              <item name="springmicroservices" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="project.scopes" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -63,12 +93,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1561751056320</updated>
-      <workItem from="1561751057560" duration="302000" />
+      <workItem from="1561751057560" duration="946000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="302000" />
+    <option name="totallyTimeSpent" value="946000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1281" y="-1080" width="1920" height="1080" extended-state="6" />
@@ -105,6 +135,15 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/photo-app-api-users/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
