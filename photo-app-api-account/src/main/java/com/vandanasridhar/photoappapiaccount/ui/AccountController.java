@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
 
     @GetMapping("/status/check")
-    public String status()
-    {
+    public String status() {
         return "working";
     }
 }

@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/photo-app-api-account/photo-app-api-account.iml" filepath="$PROJECT_DIR$/photo-app-api-account/photo-app-api-account.iml" />
+      <module fileurl="file://$PROJECT_DIR$/photo-app-api-users/photo-app-api-users.iml" filepath="$PROJECT_DIR$/photo-app-api-users/photo-app-api-users.iml" />
+      <module fileurl="file://$PROJECT_DIR$/photo-app-discovery-service/photo-app-discovery-service.iml" filepath="$PROJECT_DIR$/photo-app-discovery-service/photo-app-discovery-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/photo-app-zuul-api-gateway/photo-app-zuul-api-gateway.iml" filepath="$PROJECT_DIR$/photo-app-zuul-api-gateway/photo-app-zuul-api-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/springmicroservices.iml" filepath="$PROJECT_DIR$/.idea/springmicroservices.iml" />
     </modules>
   </component>

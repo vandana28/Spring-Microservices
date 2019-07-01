@@ -3,4 +3,14 @@
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
   </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/photo-app-api-account/pom.xml" />
+        <option value="$PROJECT_DIR$/photo-app-api-users/pom.xml" />
+        <option value="$PROJECT_DIR$/photo-app-discovery-service/pom.xml" />
+        <option value="$PROJECT_DIR$/photo-app-zuul-api-gateway/pom.xml" />
+      </list>
+    </option>
+  </component>
 </project>

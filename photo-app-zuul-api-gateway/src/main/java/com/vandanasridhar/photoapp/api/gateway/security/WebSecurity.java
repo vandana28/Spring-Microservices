@@ -1,4 +1,5 @@
 package com.vandanasridhar.photoapp.api.gateway.security;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -22,21 +23,18 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     }
 
 
-
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    public void configure(HttpSecurity http) throws Exception {
 
         http.csrf().disable();
         http.headers().frameOptions().disable();
         http.authorizeRequests()
                 .antMatchers(environment.getProperty("api.h2console.url.path")).permitAll() // to access h2 console
-                .antMatchers(HttpMethod.POST,environment.getProperty("api.registration.url.path")).permitAll() // to sign up
-                .antMatchers(HttpMethod.POST,environment.getProperty("api.login.url.path")).permitAll()// to login
+                .antMatchers(HttpMethod.POST, environment.getProperty("api.registration.url.path")).permitAll() // to sign up
+                .antMatchers(HttpMethod.POST, environment.getProperty("api.login.url.path")).permitAll()// to login
                 .anyRequest().authenticated() // any other http requests must be autheticated
                 .and()
-                .addFilter(new AuthorizationFilter(authenticationManager(),environment));
-
-
+                .addFilter(new AuthorizationFilter(authenticationManager(), environment));
 
 
         //will make api stateless. when client communicates with server, there will be a http session that will be created.
