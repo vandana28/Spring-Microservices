@@ -3,17 +3,24 @@ package com.vandanasridhar.photoapp.api.users.service;
 import com.vandanasridhar.photoapp.api.users.data.UserEntity;
 import com.vandanasridhar.photoapp.api.users.data.UsersRepository;
 import com.vandanasridhar.photoapp.api.users.shared.UserDto;
+import com.vandanasridhar.photoapp.api.users.ui.model.AlbumResponseModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.modelmapper.spi.MatchingStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -24,10 +31,16 @@ public class UsersServiceImplemenation implements UsersService { // UserDetails 
 
     BCryptPasswordEncoder bCryptPasswordEncoder; // for encryption of password and decryption as well.
 
+    RestTemplate restTemplate;
+    Environment environment;
+
     @Autowired
-    public UsersServiceImplemenation(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UsersServiceImplemenation(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder,RestTemplate restTemplate,Environment environment) {
         this.usersRepository = usersRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.restTemplate = restTemplate;
+        this.environment = environment;
+
     }
 
     @Override
@@ -73,5 +86,32 @@ public class UsersServiceImplemenation implements UsersService { // UserDetails 
         return new ModelMapper().map(userEntity, UserDto.class);
     }
 
+    @Override
+    public UserDto getUserByUserId(String userId) {
 
+        UserEntity userEntity = usersRepository.findByUserId(userId);
+        if (userEntity == null) throw new UsernameNotFoundException("user not found");
+
+
+        UserDto userDto = new ModelMapper().map(userEntity, UserDto.class); // takes the entity and converts it into a user dto and returns it.
+        String albumsUrl = String.format(environment.getProperty("albums.url"),userId); // since the port number isnt constant and a new port number is initialised each time the albums
+        // microservice is started, the name under which the microservice is registered can be used instead.
+        // albumsurl - url to the album's microservice to return the list of albums
+        // http.GET - reuqest
+        // requestEntity: null - http entity, information included with the request which is null because no information is included.
+        // fourth paramter - response type, since a list of albums is gonna be obtained as a response, a list of album response model will be the response type.
+        // when the exchange method is called on the rest template object, it will send a httpGET request to the albums URL, and the response from the url should be an albums list
+        //hence it is of type album response model. That response is stored in albumsListResponse. Now to extract the albums, the body of the response is extracted (getBody())
+
+        ResponseEntity<List<AlbumResponseModel>> albumsListResponse = restTemplate.exchange(albumsUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<AlbumResponseModel>>() {
+        });
+        List<AlbumResponseModel> albumsList = albumsListResponse.getBody();
+        // now this albumslist response must be converted into a userDTO so that it can be transferred from a service class to a controller class.
+
+        userDto.setAlbums(albumsList);
+
+        return userDto;
+
+
+    }
 }

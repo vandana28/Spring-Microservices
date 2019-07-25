@@ -1,6 +1,9 @@
 package com.vandanasridhar.photoapp.api.users.shared;
 
+import com.vandanasridhar.photoapp.api.users.ui.model.AlbumResponseModel;
+
 import java.io.Serializable;
+import java.util.List;
 
 public class UserDto implements Serializable {
 
@@ -11,6 +14,9 @@ public class UserDto implements Serializable {
     private String email;
     private String userId;
     private String ecryptedPassword; // the service layer will encrypt the password and store this version in the database.
+    List<AlbumResponseModel> albums;
+
+
 
     public String getFirstName() {
         return firstName;
@@ -58,5 +64,13 @@ public class UserDto implements Serializable {
 
     public void setEcryptedPassword(String ecryptedPassword) {
         this.ecryptedPassword = ecryptedPassword;
+    }
+
+    public List<AlbumResponseModel> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(List<AlbumResponseModel> albums) {
+        this.albums = albums;
     }
 }

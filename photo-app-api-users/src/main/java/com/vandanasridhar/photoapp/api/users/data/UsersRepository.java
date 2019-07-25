@@ -8,6 +8,8 @@ public interface UsersRepository extends CrudRepository <UserEntity, Long> {
     // to write a query to find by username
     UserEntity findByEmail(String email);
 
+    UserEntity findByUserId(String userId); // since fields like email and userId exists in the database, we can query details using findby "field name"
+
 
 
 }
