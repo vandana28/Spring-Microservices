@@ -1,12 +1,16 @@
 package com.vandanasridhar.photoapp.api.users.service;
 
+import com.vandanasridhar.photoapp.api.users.data.AlbumsServiceClient;
 import com.vandanasridhar.photoapp.api.users.data.UserEntity;
 import com.vandanasridhar.photoapp.api.users.data.UsersRepository;
 import com.vandanasridhar.photoapp.api.users.shared.UserDto;
 import com.vandanasridhar.photoapp.api.users.ui.model.AlbumResponseModel;
+import feign.FeignException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.modelmapper.spi.MatchingStrategy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
@@ -24,22 +28,26 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class UsersServiceImplemenation implements UsersService { // UserDetails object must have a unique user id. once user details are stored in the db, they have two ids. one is the database  auto
+public class UsersServiceImplementation implements UsersService { // UserDetails object must have a unique user id. once user details are stored in the db, they have two ids. one is the database  auto
     // generated id and the other one is generated through public user id which is alpha numeric generated id which is unique for every user. it is more safe as well.
 
     UsersRepository usersRepository;
 
     BCryptPasswordEncoder bCryptPasswordEncoder; // for encryption of password and decryption as well.
 
-    RestTemplate restTemplate;
+   // RestTemplate restTemplate;
+    AlbumsServiceClient albumsServiceClient;
     Environment environment;
 
+    Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
-    public UsersServiceImplemenation(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder,RestTemplate restTemplate,Environment environment) {
+    public UsersServiceImplementation(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder,Environment environment, AlbumsServiceClient albumsServiceClient) {
         this.usersRepository = usersRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.restTemplate = restTemplate;
+        //this.restTemplate = restTemplate;
         this.environment = environment;
+        this.albumsServiceClient = albumsServiceClient;
 
     }
 
@@ -94,6 +102,7 @@ public class UsersServiceImplemenation implements UsersService { // UserDetails 
 
 
         UserDto userDto = new ModelMapper().map(userEntity, UserDto.class); // takes the entity and converts it into a user dto and returns it.
+        /*
         String albumsUrl = String.format(environment.getProperty("albums.url"),userId); // since the port number isnt constant and a new port number is initialised each time the albums
         // microservice is started, the name under which the microservice is registered can be used instead.
         // albumsurl - url to the album's microservice to return the list of albums
@@ -106,7 +115,24 @@ public class UsersServiceImplemenation implements UsersService { // UserDetails 
         ResponseEntity<List<AlbumResponseModel>> albumsListResponse = restTemplate.exchange(albumsUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<AlbumResponseModel>>() {
         });
         List<AlbumResponseModel> albumsList = albumsListResponse.getBody();
+
+
+         */
         // now this albumslist response must be converted into a userDTO so that it can be transferred from a service class to a controller class.
+
+        // similar to rest template, we use the feign client to return a list of albums
+
+        logger.info("Before calling albums microservice");
+        List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId); // instead of showing the error to the user, we can show an empty list of albums and let feign exception be handled with a try and catch.
+        logger.info("After calling albums microservice");
+        /*try {
+            albumsList = albumsServiceClient.getAlbums(userId);
+        } catch (FeignException e) {
+            logger.error(e.getLocalizedMessage());
+        }*/
+
+        // feign provides somthing more advanced than a try/ catch block, which is a decoder that gets you access to the http request and response object.
+        // we can inspect the header and the http status quote and the body of the response's returned json payload.
 
         userDto.setAlbums(albumsList);
 
